@@ -19,6 +19,7 @@ module Stealth
         end
 
         def transmit
+          Stealth::Logger.l(topic: "renalis", message: reply['text'])
           Stealth::Logger.l(topic: "renalis", message: "Response sent.")
         end
 
