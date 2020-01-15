@@ -15,12 +15,6 @@ module Stealth
         end
 
         def text
-          reply['replies'].each do |reply|
-            reply.encode("UTF-8")
-          end
-          reply['suggestions'].each do |suggestion|
-            suggestion.encode("UTF-8")
-          end
           reply
         end
       end
