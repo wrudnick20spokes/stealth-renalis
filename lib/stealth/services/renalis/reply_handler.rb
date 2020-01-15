@@ -15,7 +15,9 @@ module Stealth
         end
 
         def text
-          reply['text']
+          puts reply['text']
+          puts reply['text']['suggestions']
+          reply
         end
       end
     end
