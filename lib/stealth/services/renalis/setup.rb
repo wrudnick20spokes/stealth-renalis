@@ -3,13 +3,13 @@
 
 module Stealth
   module Services
-    module Alexa
+    module Renalis
 
       class Setup
 
         class << self
           def trigger
-            Stealth::Logger.l(topic: "alexa", message: "There is no setup needed!")
+            Stealth::Logger.l(topic: "renalis", message: "There is no setup needed!")
           end
         end
 

@@ -5,7 +5,7 @@ require 'digest'
 
 module Stealth
   module Services
-    module Alexa
+    module Renalis
       class MessageHandler < Stealth::Services::BaseMessageHandler
 
         attr_reader :service_message, :params, :headers
@@ -16,12 +16,11 @@ module Stealth
         end
 
         def coordinate
-          # Alexa requires an inline response
           process
         end
 
         def process
-          @service_message = ServiceMessage.new(service: 'alexa')
+          @service_message = ServiceMessage.new(service: 'renalis')
 
           # Load the request attributes
           service_message.sender_id = get_sender_id
@@ -32,14 +31,14 @@ module Stealth
           bot_controller = BotController.new(service_message: service_message)
           bot_controller.route
 
-          send_alexa_reply
+          send_renalis_reply
         end
 
         private
 
-        def send_alexa_reply
-          puts MultiJson.dump(Thread.current[:alexa_reply]).inspect
-          MultiJson.dump(Thread.current[:alexa_reply])
+        def send_renalis_reply
+          puts MultiJson.dump(Thread.current[:renalis_reply]).inspect
+          MultiJson.dump(Thread.current[:renalis_reply])
         end
 
         def get_sender_id
@@ -53,21 +52,20 @@ module Stealth
         def get_request_details
           case params.dig('request', 'type')
           when 'CanFulfillIntentRequest'
-            Stealth::Logger.l(topic: "alexa", message: "CanFulfillIntentRequest received.")
+            Stealth::Logger.l(topic: "renalis", message: "CanFulfillIntentRequest received.")
             # Not yet implemented
           when 'LaunchRequest'
             service_message.timestamp = DateTime.parse(params.dig('request', 'timestamp'))
             service_message.locale = params.dig('request', 'locale')
             service_message.payload = 'LaunchRequest'
-            Stealth::Logger.l(topic: "alexa", message: "LaunchRequest received.")
+            Stealth::Logger.l(topic: "renalis", message: "LaunchRequest received.")
           when 'IntentRequest'
             service_message.timestamp = DateTime.parse(params.dig('request', 'timestamp'))
             service_message.locale = params.dig('request', 'locale')
             service_message.payload = params.dig('request', 'intent', 'name')
-            Stealth::Logger.l(topic: "alexa", message: "IntentRequest [#{service_message.payload}] received.")
+            Stealth::Logger.l(topic: "renalis", message: "IntentRequest [#{service_message.payload}] received.")
 
             # Load the slots (if any)
-            # Alexa uses the SlotName as the key here 😡
             params.dig('request', 'intent', 'slots')&.each do |slot_name, slot|
               service_message.slots[slot_name] = slot.dig('value')
             end
@@ -75,7 +73,7 @@ module Stealth
             service_message.timestamp = DateTime.parse(params.dig('request', 'timestamp'))
             service_message.locale = params.dig('request', 'locale')
             service_message.payload = 'SessionEndedRequest'
-            Stealth::Logger.l(topic: "alexa", message: "SessionEndedRequest received.")
+            Stealth::Logger.l(topic: "renalis", message: "SessionEndedRequest received.")
           end
         end
 
@@ -95,7 +93,7 @@ module Stealth
   end
 
   class ServiceMessage
-    prepend Services::Alexa::Extensions
+    prepend Services::Renalis::Extensions
   end
 
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stealth-alexa (1.0.0)
+    stealth-renalis (1.0.0)
       stealth (< 2.0)
 
 GEM
@@ -71,7 +71,7 @@ DEPENDENCIES
   rack-test (~> 0.7)
   rspec (~> 3.6)
   rspec_junit_formatter (~> 0.3)
-  stealth-alexa!
+  stealth-renalis!
 
 BUNDLED WITH
    1.16.6

@@ -3,11 +3,10 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 version = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
 
 Gem::Specification.new do |s|
-  s.name = 'stealth-alexa'
-  s.summary = 'Stealth Alexa driver'
-  s.description = 'Alexa driver for Stealth.'
-  s.homepage = 'https://github.com/hellostealth/stealth-alexa'
-  s.licenses = ['MIT']
+  s.name = 'stealth-renalis'
+  s.summary = 'Stealth Renalis driver'
+  s.description = 'Renalis driver for Stealth.'
+  s.homepage = 'https://github.com/wrudnick20spokes/stealth-renalis'
   s.version = version
   s.author = 'Mauricio Gomes'
   s.email = 'mauricio@edge14.com'

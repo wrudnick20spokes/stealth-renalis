@@ -1,13 +1,13 @@
 # coding: utf-8
 # frozen_string_literal: true
 
-require 'stealth/services/alexa/message_handler'
-require 'stealth/services/alexa/reply_handler'
-require 'stealth/services/alexa/setup'
+require 'stealth/services/renalis/message_handler'
+require 'stealth/services/renalis/reply_handler'
+require 'stealth/services/renalis/setup'
 
 module Stealth
   module Services
-    module Alexa
+    module Renalis
 
       class Client < Stealth::Services::BaseClient
 
@@ -15,11 +15,11 @@ module Stealth
 
         def initialize(reply:)
           @reply = reply
-          Thread.current[:alexa_reply] = reply
+          Thread.current[:renalis_reply] = reply
         end
 
         def transmit
-          Stealth::Logger.l(topic: "alexa", message: "Response sent.")
+          Stealth::Logger.l(topic: "renalis", message: "Response sent.")
         end
 
       end

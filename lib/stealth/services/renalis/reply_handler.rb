@@ -3,7 +3,7 @@
 
 module Stealth
   module Services
-    module Alexa
+    module Renalis
 
       class ReplyHandler < Stealth::Services::BaseReplyHandler
 
@@ -19,7 +19,7 @@ module Stealth
             raise(ArgumentError, 'A speech reply cannot contain booth "text" and "SSML" values.')
           end
 
-          response = generate_alexa_response
+          response = generate_renalis_response
           output_speech = generate_speech_response(
             text: reply['text'],
             ssml: reply['ssml'],
@@ -47,7 +47,7 @@ module Stealth
         end
 
         def card
-          response = generate_alexa_response
+          response = generate_renalis_response
 
           output_speech = generate_speech_response(
             text: 'Done',
@@ -65,7 +65,7 @@ module Stealth
 
         private
 
-          def generate_alexa_response
+          def generate_renalis_response
             {
               'version' => '1.0',
               'response' => { }
