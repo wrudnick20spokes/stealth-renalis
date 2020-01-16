@@ -49,7 +49,7 @@ module Stealth
           # response = JSON.parse(MultiJson.dump(Thread.current[:renalis_reply]))
           # response["reply"]["replies"] = []
           # response.toJson
-          MultiJson.dump(Thread.current[:renalis_reply])
+          MultiJson.dump(Thread.current[:renalis_reply].reply)
         end
 
         def send_renalis_reply
