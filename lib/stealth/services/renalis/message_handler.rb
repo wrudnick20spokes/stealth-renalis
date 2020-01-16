@@ -26,6 +26,8 @@ module Stealth
           service_message.sender_id = params['user']
           service_message.message = params['message']
 
+          Stealth::Logger.l(topic: "renalis", message: service_message.message)
+
           # Craft the reply
           bot_controller = BotController.new(service_message: service_message)
           bot_controller.route
