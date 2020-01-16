@@ -46,9 +46,8 @@ module Stealth
           puts MultiJson.dump(Thread.current[:renalis_reply]).inspect
           Stealth::Logger.l(topic: "renalis", message: "THIS IS THE REPLY PAYLOAD")
           Stealth::Logger.l(topic: "renalis", message: Thread.current[:renalis_reply].reply)
-          # response = JSON.parse(MultiJson.dump(Thread.current[:renalis_reply]))
-          # response["reply"]["replies"] = []
-          # response.toJson
+          [:renalis_reply].reply.replies = []
+          Stealth::Logger.l(topic: "renalis", message: Thread.current[:renalis_reply].reply)
           MultiJson.dump(Thread.current[:renalis_reply])
         end
 
