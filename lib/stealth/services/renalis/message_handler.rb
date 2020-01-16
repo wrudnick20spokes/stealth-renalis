@@ -32,10 +32,22 @@ module Stealth
           bot_controller = BotController.new(service_message: service_message)
           bot_controller.route
 
-          send_renalis_reply
+
+          if params['message'] == 'ENTERING_APPLICATION'
+            send_renalis_suggestions
+          else
+            send_renalis_reply
+          end
         end
 
         private
+
+        def send_renalis_suggestions
+          puts MultiJson.dump(Thread.current[:renalis_reply]).inspect
+          Stealth::Logger.l(topic: "renalis", message: "THIS IS THE REPLY PAYLOAD")
+          Stealth::Logger.l(topic: "renalis", message: MultiJson.dump(Thread.current[:renalis_reply]))
+          MultiJson.dump(Thread.current[:renalis_reply])
+        end
 
         def send_renalis_reply
           puts MultiJson.dump(Thread.current[:renalis_reply]).inspect
