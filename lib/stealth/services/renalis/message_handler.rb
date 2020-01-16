@@ -45,11 +45,11 @@ module Stealth
         def send_renalis_suggestions
           puts MultiJson.dump(Thread.current[:renalis_reply]).inspect
           Stealth::Logger.l(topic: "renalis", message: "THIS IS THE REPLY PAYLOAD")
-          Stealth::Logger.l(topic: "renalis", message: Thread.current[:renalis_reply])
+          Stealth::Logger.l(topic: "renalis", message: Thread.current[:renalis_reply].reply)
           # response = JSON.parse(MultiJson.dump(Thread.current[:renalis_reply]))
           # response["reply"]["replies"] = []
           # response.toJson
-          MultiJson.dump(Thread.current[:renalis_reply].reply)
+          MultiJson.dump(Thread.current[:renalis_reply])
         end
 
         def send_renalis_reply
