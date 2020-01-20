@@ -32,8 +32,7 @@ module Stealth
           bot_controller = BotController.new(service_message: service_message)
           bot_controller.route
 
-
-          if params['message'] == 'ENTERING_APPLICATION'
+          if params['message'] == 'RESUMING_DAY'
             send_renalis_suggestions
           else
             send_renalis_reply
