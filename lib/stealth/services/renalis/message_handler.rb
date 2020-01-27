@@ -25,6 +25,7 @@ module Stealth
           # Load the request attributes
           service_message.sender_id = params['user']
           service_message.message = params['message']
+          service_message.payload = params['nickname']
 
           Stealth::Logger.l(topic: "renalis", message: service_message.message)
 
